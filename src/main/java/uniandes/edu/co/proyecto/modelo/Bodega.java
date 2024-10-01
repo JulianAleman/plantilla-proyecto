@@ -27,7 +27,7 @@ public class Bodega {
     public Bodega(String nombre, Double tamanio, Sucursal sucursal) {
         this.Nombre = nombre;
         this.Tamaño = tamanio;
-        //this.Id_sucursal = sucursal;
+        this.Id_sucursal = sucursal;
     }
 
    
@@ -62,5 +62,9 @@ public class Bodega {
 
     public void setSucursal(Sucursal sucursal) {
         this.Id_sucursal = sucursal;
+    }
+    @Override
+    public String toString() {
+        return this.Nombre + "|" + this.Tamaño;
     }
 }

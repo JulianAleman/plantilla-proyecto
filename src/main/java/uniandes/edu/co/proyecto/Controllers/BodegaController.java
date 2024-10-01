@@ -27,10 +27,15 @@ public class BodegaController {
     private BodegaRepository bodegaRepository;
 
     @GetMapping("/Bodegas")
-    public Collection<Bodega> getAllBodegas() {
-        return bodegaRepository.getBodegas();
+    public ResponseEntity<Collection<Bodega>> getAllBodegas() {
+        try{
+            Collection<Bodega> bodegas = bodegaRepository.getBodegas();
+            return ResponseEntity.ok(bodegas);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
-    @GetMapping("/bodega/consula")
+    @GetMapping("/Bodega/Consula")
     public ResponseEntity<?> bodegasConsulta(@RequestParam(required = false) String sucursal,@RequestParam(required = false) List<Long> codigos) {
         try{
             Collection<respuestaocupaciondeunabodega>informacion = bodegaRepository.mostrarbodegas1();
