@@ -56,11 +56,11 @@ public class Bodega {
         this.Tamaño = tamanio;
     }
 
-    //public Sucursal getSucursal() {
-    //    return Id_sucursal;
-    //}
+    public Sucursal getSucursal() {
+        return Id_sucursal;
+    }
 
-    //public void setSucursal(Sucursal sucursal) {
-    //    this.Id_sucursal = sucursal;
-    //}
+    public void setSucursal(Sucursal sucursal) {
+        this.Id_sucursal = sucursal;
+    }
 }
