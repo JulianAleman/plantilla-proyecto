@@ -21,8 +21,13 @@ public class RecepcionProductosController {
     private RecepcionProductosRepository recepcionProductosRepository;
 
     @GetMapping("/RecepcionProductos")
-    public Collection<RecepcionProductos> getAllRecepcionProductos() {
-        return recepcionProductosRepository.getAllRecepcionProductos();
+    public ResponseEntity<Collection<RecepcionProductos>> getAllRecepcionProductos() {
+        try{
+            Collection<RecepcionProductos> re =recepcionProductosRepository.getAllRecepcionProductos();
+            return ResponseEntity.ok(re);
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
     
     @PostMapping("/RecepcionProductos/new/save")

@@ -20,8 +20,13 @@ public class InfoExtraOrdenController {
     private InfoExtraOrdenRepository infoExtraOrdenRepository;
 
     @GetMapping("/InfoExtraOrdenes")
-    public Collection<InfoExtraOrden> getAllInfoExtraOrdenes() {
-        return infoExtraOrdenRepository.getAllInfoExtraOrden();
+    public ResponseEntity<Collection<InfoExtraOrden>> getAllInfoExtraOrdenes() {
+        try{
+            Collection<InfoExtraOrden> inf =infoExtraOrdenRepository.getAllInfoExtraOrden();
+            return ResponseEntity.ok(inf);
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @PostMapping("/InfoExtraOrdenes/new/save")

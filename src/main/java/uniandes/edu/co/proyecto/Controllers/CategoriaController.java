@@ -20,10 +20,14 @@ public class CategoriaController {
     private CategoriaRepository categoriaRepository;
 
     @GetMapping("/Categorias")
-    public Collection<Categoria> getAllCategorias() {
-        return categoriaRepository.getCategorias();
+    public ResponseEntity<Collection<Categoria>> getAllCategorias() {
+        try{
+        Collection<Categoria> categorias= categoriaRepository.getCategorias();
+         return ResponseEntity.ok(categorias);
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
-
     @PostMapping("/Categorias/new/save")
     public ResponseEntity<String> categoriaGuardar(@RequestBody Categoria categoria) {
         try {

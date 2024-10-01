@@ -20,8 +20,14 @@ public class ProductoController {
     private ProductoRepository productoRepository;
 
     @GetMapping("/Productos")
-    public Collection<Producto> getAllProductos() {
-        return productoRepository.getAllProductos();
+    public ResponseEntity<Collection<Producto>> getAllProductos() {
+        try{
+            Collection<Producto>pr =productoRepository.getAllProductos();
+            return ResponseEntity.ok(pr);
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+        
     }
 
     @PostMapping("/Productos/new/save")

@@ -20,8 +20,13 @@ public class ClienteController {
     private ClienteRepository clienteRepository;
 
     @GetMapping("/Clientes")
-    public Collection<Cliente> getAllClientes() {
-        return clienteRepository.getClientes();
+    public ResponseEntity<Collection<Cliente>> getAllClientes() {
+        try{
+            Collection<Cliente> clientes= clienteRepository.getClientes();
+            return ResponseEntity.ok(clientes);
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @PostMapping("/Clientes/new/save")

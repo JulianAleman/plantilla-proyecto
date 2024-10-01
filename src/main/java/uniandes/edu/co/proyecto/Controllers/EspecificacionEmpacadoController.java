@@ -20,8 +20,13 @@ public class EspecificacionEmpacadoController {
     private EspecificacionEmpacadoRepository especificacionEmpacadoRepository;
 
     @GetMapping("/EspecificacionEmpacado")
-    public Collection<EspecificacionEmpacado> getAllEspecificacionEmpacado() {
-        return especificacionEmpacadoRepository.getAllEspecificacionEmpacado();
+    public ResponseEntity<Collection<EspecificacionEmpacado>>getAllEspecificacionEmpacado() {
+        try{
+            Collection<EspecificacionEmpacado> espe= especificacionEmpacadoRepository.getAllEspecificacionEmpacado();
+            return ResponseEntity.ok(espe);
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @PostMapping("/EspecificacionEmpacado/new/save")

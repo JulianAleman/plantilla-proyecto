@@ -20,8 +20,13 @@ public class OrdenCompraController {
     private OrdenCompraRepository ordenCompraRepository;
 
     @GetMapping("/OrdenesCompra")
-    public Collection<OrdenCompra> getAllOrdenesCompra() {
-        return ordenCompraRepository.getAllOrdenCompras();
+    public ResponseEntity<Collection<OrdenCompra>> getAllOrdenesCompra() {
+        try{
+            Collection<OrdenCompra> or =ordenCompraRepository.getAllOrdenCompras();
+            return ResponseEntity.ok(or);
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @PostMapping("/OrdenesCompra/new/save")

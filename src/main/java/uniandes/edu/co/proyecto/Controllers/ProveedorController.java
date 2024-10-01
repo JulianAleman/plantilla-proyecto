@@ -20,8 +20,13 @@ public class ProveedorController {
     private ProveedorRepository proveedorRepository;
 
     @GetMapping("/Proveedores")
-    public Collection<Proveedor> getAllProveedores() {
-        return proveedorRepository.getAllProveedores();
+    public ResponseEntity<Collection<Proveedor>>getAllProveedores() {
+        try{
+            Collection<Proveedor> pro=proveedorRepository.getAllProveedores();
+            return ResponseEntity.ok(pro);
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @PostMapping("/Proveedores/new/save")

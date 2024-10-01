@@ -20,8 +20,13 @@ public class VentaController {
     private VentaRepository ventaRepository;
 
     @GetMapping("/Ventas")
-    public Collection<Venta> getAllVentas() {
-        return ventaRepository.getAllVentas();
+    public ResponseEntity<Collection<Venta>> getAllVentas() {
+        try{
+            Collection<Venta> v=ventaRepository.getAllVentas();
+            return ResponseEntity.ok(v);
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @PostMapping("/Ventas/new/save")

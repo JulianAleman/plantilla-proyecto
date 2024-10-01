@@ -20,8 +20,13 @@ public class SucursalController {
     private SucursalRepository sucursalRepository;
 
     @GetMapping("/Sucursales")
-    public Collection<Sucursal> getAllSucursales() {
-        return sucursalRepository.getAllSucursales();
+    public ResponseEntity<Collection<Sucursal>> getAllSucursales() {
+        try{
+            Collection<Sucursal> s= sucursalRepository.getAllSucursales();
+            return ResponseEntity.ok(s);
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @PostMapping("/Sucursales/new/save")

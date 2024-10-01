@@ -20,8 +20,13 @@ public class InfoExtraBodegaController {
     private InfoExtraBodegaRepository infoExtraBodegaRepository;
 
     @GetMapping("/InfoExtraBodegas")
-    public Collection<InfoExtraBodega> getAllInfoExtraBodegas() {
-        return infoExtraBodegaRepository.getAllInfoExtraBodega();
+    public ResponseEntity<Collection<InfoExtraBodega>> getAllInfoExtraBodegas() {
+        try{
+            Collection<InfoExtraBodega> inf= infoExtraBodegaRepository.getAllInfoExtraBodega();
+            return ResponseEntity.ok(inf);
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @PostMapping("/InfoExtraBodegas/new/save")

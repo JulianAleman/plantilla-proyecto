@@ -20,8 +20,13 @@ public class CiudadController {
     private CiudadRepository ciudadRepository;
 
     @GetMapping("/Ciudades")
-    public Collection<Ciudad> getAllCiudades() {
-        return ciudadRepository.getCiudades();
+    public ResponseEntity<Collection<Ciudad>> getAllCiudades() {
+        try{
+            Collection<Ciudad>ciudades = ciudadRepository.getCiudades();
+            return ResponseEntity.ok(ciudades);
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @PostMapping("/Ciudades/new/save")

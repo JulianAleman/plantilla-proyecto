@@ -20,8 +20,13 @@ public class DetalleCostoBodegaController {
     private DetalleCostoBodegaRepository detalleCostoBodegaRepository;
 
     @GetMapping("/DetalleCostoBodega")
-    public Collection<DetalleCostoBodega> getAllDetalleCostoBodega() {
-        return detalleCostoBodegaRepository.getAllDetalleCostoBodega();
+    public ResponseEntity<Collection<DetalleCostoBodega>> getAllDetalleCostoBodega() {
+        try {
+            Collection<DetalleCostoBodega> detalles = detalleCostoBodegaRepository.getAllDetalleCostoBodega();
+            return ResponseEntity.ok(detalles);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @PostMapping("/DetalleCostoBodega/new/save")

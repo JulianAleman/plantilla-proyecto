@@ -21,8 +21,13 @@ public class InfoExtraVentaController {
     private InfoExtraVentaRepository infoExtraVentaRepository;
 
     @GetMapping("/InfoExtraVentas")
-    public Collection<InfoExtraVenta> getAllInfoExtraVenta() {
-        return infoExtraVentaRepository.getAllInfoExtraVenta();
+    public ResponseEntity<Collection<InfoExtraVenta>> getAllInfoExtraVenta() {
+        try{
+            Collection<InfoExtraVenta>info=infoExtraVentaRepository.getAllInfoExtraVenta();
+            return ResponseEntity.ok(info);
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @PostMapping("/InfoExtraVentas/new/save")

@@ -15,17 +15,17 @@ public class Categoria {
     private Long Codigo;
 
     private String Nombre;
+
     private String Descripcion;
-    private String CaracteristicasAlmacenamiento;
-    public Categoria() {;
-    }
-    public Categoria(String nombre, String descripcion, String caracteristicasAlmacenamiento) {
+    
+    private String Caracteristicas_Almacenamiento; 
+    public Categoria() {;}
+
+    public Categoria(String nombre, String descripcion, String CaracteristicasAlmacenamiento) {
         this.Nombre = nombre;
         this.Descripcion = descripcion;
-        this.CaracteristicasAlmacenamiento = caracteristicasAlmacenamiento;
+        this.Caracteristicas_Almacenamiento=CaracteristicasAlmacenamiento;
     }
-
- 
 
     public Long getCodigo() {
         return Codigo;
@@ -52,11 +52,14 @@ public class Categoria {
     }
 
     public String getCaracteristicasAlmacenamiento() {
-        return CaracteristicasAlmacenamiento;
+        return Caracteristicas_Almacenamiento;
     }
 
     public void setCaracteristicasAlmacenamiento(String caracteristicasAlmacenamiento) {
-        this.CaracteristicasAlmacenamiento = caracteristicasAlmacenamiento;
+        this.Caracteristicas_Almacenamiento = caracteristicasAlmacenamiento;
     }
-
+    @Override
+    public String toString() {
+        return this.Nombre + "|" + this.Descripcion + "|"+ this.Caracteristicas_Almacenamiento;
+    }
 }
