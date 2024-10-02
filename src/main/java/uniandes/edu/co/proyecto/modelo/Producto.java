@@ -31,7 +31,7 @@ public class Producto {
     @ManyToOne
     @JoinColumn(name = "Id_Especificacion_Empacado", referencedColumnName = "Id")
     private EspecificacionEmpacado Especificacion_Empacado;
-    
+
     public Producto() {;}
 
     public Producto(String nombre, Double precioUnitarioVenta, String presentacion,
