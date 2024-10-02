@@ -18,32 +18,33 @@ public class Producto {
     private Long CodigoBarras;
 
     private String Nombre;
-    private Double PrecioUnitarioVenta;
+    private Double Precio_Unitario_Venta;
     private String Presentacion;
-    private Integer CantidadPresentacion;
-    private String UnidadMedida;
-    private Date FechaExpiracion;
+    private Integer Cantidad_Presentacion;
+    private String Unidad_Medida;
+    private Date Fecha_Expiracion;
 
     @ManyToOne
-    @JoinColumn(name = "Codigo_Categoria", referencedColumnName = "codigo")
+    @JoinColumn(name = "Codigo_Categoria", referencedColumnName = "Codigo")
     private Categoria Codigo_categoria;
 
     @ManyToOne
-    @JoinColumn(name = "Id_especificacionEmpacado", referencedColumnName = "id")
-    private EspecificacionEmpacado Id_EspecificacionEmpacado;
-    public Producto() {;
-    }
+    @JoinColumn(name = "Id_Especificacion_Empacado", referencedColumnName = "Id")
+    private EspecificacionEmpacado Especificacion_Empacado;
+    
+    public Producto() {;}
+
     public Producto(String nombre, Double precioUnitarioVenta, String presentacion,
             Integer cantidadPresentacion, String unidadMedida, Date fechaExpiracion, Categoria categoria,
             EspecificacionEmpacado especificacionEmpacado) {
         this.Nombre = nombre;
-        this.PrecioUnitarioVenta = precioUnitarioVenta;
+        this.Precio_Unitario_Venta = precioUnitarioVenta;
         this.Presentacion = presentacion;
-        this.CantidadPresentacion = cantidadPresentacion;
-        this.UnidadMedida = unidadMedida;
-        this.FechaExpiracion = fechaExpiracion;
+        this.Cantidad_Presentacion = cantidadPresentacion;
+        this.Unidad_Medida = unidadMedida;
+        this.Fecha_Expiracion = fechaExpiracion;
         this.Codigo_categoria = categoria;
-        this.Id_EspecificacionEmpacado = especificacionEmpacado;
+        this.Especificacion_Empacado = especificacionEmpacado;
     }
 
     
@@ -64,11 +65,11 @@ public class Producto {
     }
 
     public Double getPrecioUnitarioVenta() {
-        return PrecioUnitarioVenta;
+        return Precio_Unitario_Venta;
     }
 
     public void setPrecioUnitarioVenta(Double precioUnitarioVenta) {
-        this.PrecioUnitarioVenta = precioUnitarioVenta;
+        this.Precio_Unitario_Venta = precioUnitarioVenta;
     }
 
     public String getPresentacion() {
@@ -80,27 +81,27 @@ public class Producto {
     }
 
     public Integer getCantidadPresentacion() {
-        return CantidadPresentacion;
+        return Cantidad_Presentacion;
     }
 
     public void setCantidadPresentacion(Integer cantidadPresentacion) {
-        this.CantidadPresentacion = cantidadPresentacion;
+        this.Cantidad_Presentacion = cantidadPresentacion;
     }
 
     public String getUnidadMedida() {
-        return UnidadMedida;
+        return Unidad_Medida;
     }
 
     public void setUnidadMedida(String unidadMedida) {
-        this.UnidadMedida = unidadMedida;
+        this.Unidad_Medida = unidadMedida;
     }
 
     public Date getFechaExpiracion() {
-        return FechaExpiracion;
+        return Fecha_Expiracion;
     }
 
     public void setFechaExpiracion(Date fechaExpiracion) {
-        this.FechaExpiracion = fechaExpiracion;
+        this.Fecha_Expiracion = fechaExpiracion;
     }
 
     public Categoria getCodigo_categoria() {
@@ -112,10 +113,14 @@ public class Producto {
     }
 
     public EspecificacionEmpacado getId_EspecificacionEmpacado() {
-        return Id_EspecificacionEmpacado;
+        return Especificacion_Empacado;
     }
 
     public void setId_EspecificacionEmpacado(EspecificacionEmpacado especificacionEmpacado) {
-        this.Id_EspecificacionEmpacado = especificacionEmpacado;
+        this.Especificacion_Empacado = especificacionEmpacado;
+    }
+    @Override
+    public String toString() {
+        return this.Nombre + "|" + this.Presentacion + "|"+ this.Cantidad_Presentacion + "|" + Unidad_Medida + "|" + Fecha_Expiracion +"|"+ Codigo_categoria+"|"+ Especificacion_Empacado;
     }
 }

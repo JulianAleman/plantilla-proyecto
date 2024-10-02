@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "EspecificacionEmpacado")
+@Table(name = "Especificacion_Empacado")
 public class EspecificacionEmpacado {
 
     @Id
@@ -16,8 +16,8 @@ public class EspecificacionEmpacado {
     
     private Double Volumen_cm3;
     private Double Peso_Gr;
-    public EspecificacionEmpacado() {;
-    }
+    public EspecificacionEmpacado() {;}
+
     public EspecificacionEmpacado(Double volumen_CM3, Double peso_Gr) {
         this.Volumen_cm3 = volumen_CM3;
         this.Peso_Gr = peso_Gr;

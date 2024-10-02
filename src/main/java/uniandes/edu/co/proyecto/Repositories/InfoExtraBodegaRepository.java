@@ -13,15 +13,15 @@ import uniandes.edu.co.proyecto.modelo.InfoExtraBodegaPK;
 
 public interface InfoExtraBodegaRepository extends JpaRepository<InfoExtraBodega, InfoExtraBodegaPK> {
 
-    @Query(value = "SELECT * FROM InfoExtraBodega", nativeQuery = true)
+    @Query(value = "SELECT * FROM Info_Extra_Bodega", nativeQuery = true)
     Collection<InfoExtraBodega> getAllInfoExtraBodega();
 
-    @Query(value = "SELECT * FROM InfoExtraBodega WHERE CodigoBarras_Producto = :codBar AND Id_Bodega = :idBod", nativeQuery = true)
+    @Query(value = "SELECT * FROM Info_Extra_Bodega WHERE Codigo_Barras_Producto = :codBar AND Id_Bodega = :idBod", nativeQuery = true)
     InfoExtraBodega getInfoExtraBodega(@Param("codBar") Long codBar, @Param("idBod") Long idBod);
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO InfoExtraBodega (CodigoBarras_Producto, Id_bodega, TotalExistencia, CostoPromedio, CapacidadAlmacenamiento, NivelMinimoReorden, Id_detalleCostoBodega) VALUES (proyecto-1-superandes_sequence.nextval, :codBar, :idBod, :existencia, :costo, :capacidad, :reorden, :idCostoBodega)", 
+    @Query(value = "INSERT INTO Info_Extra_Bodega (Codigo_Barras_Producto, Id_bodega, Total_Existencia, Costo_Promedio, Capacidad_Almacenamiento, Nivel_Minimo_Re_Orden, Id_detalle_Costo_Bodega) VALUES (proyecto-1-superandes_sequence.nextval, :codBar, :idBod, :existencia, :costo, :capacidad, :reorden, :idCostoBodega)", 
             nativeQuery = true)
     void insertInfoExtraBodega(@Param("codBar") Long codBar, @Param("idBod") Long idBod, @Param("existencia") Integer existencia,
                 @Param("costo") Double costo, @Param("capacidad") Double capacidad, @Param("reorden") Double reorden,
@@ -29,13 +29,13 @@ public interface InfoExtraBodegaRepository extends JpaRepository<InfoExtraBodega
     
     @Modifying
     @Transactional
-    @Query(value = "UPDATE InfoExtraBodega SET CodigoBarras_Producto = :codBarAct, Id_bodega = :idBodAct, TotalExistencia = :existencia, CostoPromedio = :costo, CapacidadAlmacenamiento = :capacidad, NivelMinimoReorden = :reorden, Id_detalleCostoBodega = :idCostoBodega WHERE CodigoBarras_Producto = :codBar AND Id_bodega = :idBod", nativeQuery = true)
+    @Query(value = "UPDATE Info_Extra_Bodega SET Codigo_Barras_Producto = :codBarAct, Id_bodega = :idBodAct, Total_Existencia = :existencia, CostoPromedio = :costo, Capacidad_Almacenamiento = :capacidad, Nivel_Minimo_Re_Orden = :reorden, Id_detalle_Costo_Bodega = :idCostoBodega WHERE Codigo_Barras_Producto = :codBar AND Id_bodega = :idBod", nativeQuery = true)
     void updateInfoExtraBodega(@Param("codBarAct") Long codBarAct, @Param("idBodAct") Long idBodAct, @Param("codBar") Long codBar, @Param("idBod") Long idBod, 
     @Param("existencia") Integer existencia, @Param("costo") Double costo, @Param("capacidad") Double capacidad, 
     @Param("reorden") Double reorden, @Param("idCostoBodega") Long idCostoBodega);
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM InfoExtraBodega WHERE CodigoBarras_Producto = :codBar AND Id_bodega = :idBod", nativeQuery = true)
+    @Query(value = "DELETE FROM Info_Extra_Bodega WHERE Codigo_Barras_Producto = :codBar AND Id_bodega = :idBod", nativeQuery = true)
     void deleteInfoExtraBodega(@Param("codBar") Long codBar, @Param("idBod") Long idBod);
 }

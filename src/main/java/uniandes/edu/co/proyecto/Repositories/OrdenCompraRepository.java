@@ -13,26 +13,26 @@ import uniandes.edu.co.proyecto.modelo.OrdenCompra;
 
 public interface OrdenCompraRepository extends JpaRepository<OrdenCompra, Long> {
 
-    @Query(value = "SELECT * FROM OrdenCompra", nativeQuery = true)
+    @Query(value = "SELECT * FROM Orden_Compra", nativeQuery = true)
     Collection<OrdenCompra> getAllOrdenCompras();
 
-    @Query(value = "SELECT * FROM OrdenCompra WHERE Id = :id", nativeQuery = true)
+    @Query(value = "SELECT * FROM Orden_Compra WHERE Id = :id", nativeQuery = true)
     OrdenCompra getOrdenCompra(@Param("id") Long id);
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO OrdenCompra (Id, FechaCreacion, Estado, FechaEntrega, Nit_proveedor, Id_Sucursal) VALUES (proyecto-1-superandes_sequence.nextval, :creacion, :estado, :entrega, :nit, :idSucursal)", nativeQuery = true)
+    @Query(value = "INSERT INTO Orden_Compra (Id, Fecha_Creacion, Estado, Fecha_Entrega, Nit_proveedor, Id_Sucursal) VALUES (proyecto-1-superandes_sequence.nextval, :creacion, :estado, :entrega, :nit, :idSucursal)", nativeQuery = true)
     void insertOrdenCompra(@Param("creacion") Date creacion, @Param("estado") String estado, @Param("entrega") Date entrega,
                         @Param("nit") Long nitProveedor, @Param("idSucursal") Long idSucursal);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE OrdenCompra SET FechaCreacion = :creacion, Estado = :estado, FechaEntrega = :entrega, Nit_proveedor = :nit, Id_Sucursal = :idSucursal WHERE Id = :id", nativeQuery = true)
+    @Query(value = "UPDATE Orden_Compra SET Fecha_Creacion = :creacion, Estado = :estado, Fecha_Entrega = :entrega, Nit_proveedor = :nit, Id_Sucursal = :idSucursal WHERE Id = :id", nativeQuery = true)
     void updateOrdenCompra(@Param("id") Long id, @Param("creacion") Date creacion, @Param("estado") String estado, @Param("entrega") Date entrega,
     @Param("nit") Long nitProveedor, @Param("idSucursal") Long idSucursal);
 
     @Modifying
     @Transactional
-    @Query(value = "DELETE FROM OrdenCompra WHERE Id = :id", nativeQuery = true)
+    @Query(value = "DELETE FROM Orden_Compra WHERE Id = :id", nativeQuery = true)
     void deleteOrdenCompra(@Param("id") Long id);
 }

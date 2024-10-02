@@ -20,13 +20,13 @@ public interface ProveedorRepository extends JpaRepository<Proveedor, Long> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Proveedor (Nit, Nombre, Direccion, NombreContacto, TelefonoContacto) VALUES (:nit, :nombre, :direccion, :contacto, :telefono)", nativeQuery = true)
+    @Query(value = "INSERT INTO Proveedor (Nit, Nombre, Direccion, Nombre_Contacto, Telefono_Contacto) VALUES (:nit, :nombre, :direccion, :contacto, :telefono)", nativeQuery = true)
     void insertProveedor(@Param("nit") Long nit, @Param("nombre") String nombre, @Param("direccion") String direccion,
                         @Param("contacto") String contacto, @Param("telefono") Long telefono);
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Proveedor SET Nombre = :nombre, Direccion = :direccion, NombreContacto = :contacto, TelefonoContacto = :telefono WHERE Nit = :nit", nativeQuery = true)
+    @Query(value = "UPDATE Proveedor SET Nombre = :nombre, Direccion = :direccion, Nombre_Contacto = :contacto, Telefono_Contacto = :telefono WHERE Nit = :nit", nativeQuery = true)
     void updateProveedor(@Param("nit") Long nit, @Param("nombre") String nombre, @Param("direccion") String direccion,
     @Param("contacto") String contacto, @Param("telefono") Long telefono);
 
