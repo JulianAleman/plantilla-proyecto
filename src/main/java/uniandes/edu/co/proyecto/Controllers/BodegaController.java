@@ -11,13 +11,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import uniandes.edu.co.proyecto.modelo.Bodega;
 import uniandes.edu.co.proyecto.Repositories.BodegaRepository;
 import uniandes.edu.co.proyecto.Repositories.BodegaRepository.respuestaocupaciondeunabodega;
-
-import org.springframework.web.bind.annotation.RequestParam;
+import uniandes.edu.co.proyecto.modelo.Bodega;
 
 
 @RestController
@@ -35,28 +34,27 @@ public class BodegaController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-    @GetMapping("/Bodega/Consula")
-    public ResponseEntity<?> bodegasConsulta(@RequestParam(required = false) String sucursal,@RequestParam(required = false) List<Long> codigos) {
-        try{
-            Collection<respuestaocupaciondeunabodega>informacion = bodegaRepository.mostrarbodegas1();
-            respuestaocupaciondeunabodega info = informacion.iterator().next();
+    @GetMapping("/Bodega/Consulta")
+    public ResponseEntity<?> bodegasConsulta(@RequestParam(required = false) String sucursal, @RequestParam(required = false) List<Long> codigos) {
+        try {
+            Collection<respuestaocupaciondeunabodega> informacion = bodegaRepository.mostrarocupaciondeunabodega();
             Map<String, Object> response = new HashMap<>();
-            response.put("PromedioOcupacion", info.getPROMEDIO_OCUPACION());
-            
+            response.put("Porcentaje_Ocupacion_Todas", informacion);
             Collection<Bodega> bodegas;
-            if (sucursal.isEmpty()|| sucursal==null|| codigos.isEmpty()){
-                    bodegas = bodegaRepository.getBodegas();
 
-            } else{
-                    bodegas= bodegaRepository.mostrarocupaciondeunabodega(Long.parseLong(sucursal), codigos);
+            if (sucursal == null || sucursal.isEmpty() || codigos.isEmpty()) {
+                bodegas = bodegaRepository.getBodegas();
+
+            } else {
+                bodegas = bodegaRepository.Bodegas(Long.parseLong(sucursal), codigos);
             }
             response.put("Bodegas", bodegas);
-
+            
             return ResponseEntity.ok(response);
-     
-        }  catch(Exception e){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }  
+    
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al consultar las bodegas: " + e.getMessage());
+        }
     }
 
      

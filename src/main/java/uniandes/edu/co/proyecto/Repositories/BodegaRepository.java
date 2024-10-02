@@ -14,7 +14,7 @@ import uniandes.edu.co.proyecto.modelo.Sucursal;
 public interface BodegaRepository extends JpaRepository<Bodega, Long>{
 
     public interface respuestaocupaciondeunabodega {
-        double getPROMEDIO_OCUPACION();
+        int getPorcentaje_Ocupacion();
     }
 
     @Query(value = "SELECT * FROM Bodega", nativeQuery = true)
@@ -40,21 +40,21 @@ public interface BodegaRepository extends JpaRepository<Bodega, Long>{
 
 
     
-    @Query(value ="SELECT b.nombre AS bodega, \r\n"+ 
-        "(SUM(ieb.totalExistencia * ee.volumen_m3) / b.tamaño) * 100 AS porcentajeOcupacion \r\n" +
-       "FROM Bodega b \r\n" +
-       "INNER JOIN InfoExtraBodega ieb ON b.Id = ieb.Id_Bodega\r\n" +
-       "INNER JOIN Producto p ON ieb.codigobarras_producto = p.codigobarras \r\n" +
-       "INNER JOIN EspecificacionEmpacado ee ON p.Id_EspecificacionEmpacado = ee.Id \r\n" +
-       "WHERE p.codigoBarras IN :codigos AND b.sucursal.id = :sucursal \r\n" +
-       "GROUP BY b.nombre", nativeQuery = true)
-    Collection<Bodega> mostrarocupaciondeunabodega(@Param("sucursal") Long sucursal, @Param ("codigos") List<Long> codigos);
-    
-    @Query(value ="SELECT b.nombre AS bodega, \r\n"+ 
-       "FROM Bodega b \r\n"+
-       "INNER JOIN InfoExtraBodega ieb ON b.Id = ieb.Id_Bodega\r\n" +
-       "INNER JOIN Producto p ON ieb.codigobarras_producto = p.codigobarras \r\n" +
-       "INNER JOIN EspecificacionEmpacado ee ON p.Id_EspecificacionEmpacado = ee.Id \r\n" +
-       "GROUP BY b.nombre", nativeQuery = true)
-    Collection<respuestaocupaciondeunabodega> mostrarbodegas1();
+    @Query(value ="SELECT b.Id AS Id_bodega, \r\n"+
+       "INNER JOIN Info_Extra_Bodega ieb ON b.Id = ieb.Id_Bodega\r\n" +
+       "INNER JOIN Producto p ON ieb.codigo_barras_producto = p.Codigo_Barras \r\n" +
+       "INNER JOIN Especificacion_Empacado ee ON p.Id_Especificacion_Empacado = ee.Id \r\n" +
+       "WHERE p.Codigo_Barras IN :codigos AND b.sucursal.id = :sucursal; \r\n", nativeQuery = true)
+    Collection<Bodega>Bodegas(@Param("sucursal") Long sucursal, @Param ("codigos") List<Long> codigos);
+
+    @Query(value = "SELECT b.Id AS bodega, " +
+               "(SUM(ieb.total_Existencia * ee.volumen_cm3) / b.tamaño) * 100 AS Porcentaje_Ocupacion " +
+               "FROM Bodega b " +
+               "INNER JOIN Info_Extra_Bodega ieb ON b.Id = ieb.Id_Bodega " +
+               "INNER JOIN Producto p ON ieb.codigo_barras_producto = p.codigo_barras " +
+               "INNER JOIN Especificacion_Empacado ee ON p.Id_Especificacion_Empacado = ee.Id " +
+               "GROUP BY b.Id, b.Tamaño", nativeQuery = true)
+    Collection<respuestaocupaciondeunabodega> mostrarocupaciondeunabodega();
+
 }
+
