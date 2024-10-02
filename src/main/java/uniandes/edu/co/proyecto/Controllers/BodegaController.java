@@ -62,7 +62,7 @@ public class BodegaController {
     @PostMapping("/Bodegas/new/save")
     public ResponseEntity<String> BodegaGuardar(@RequestBody Bodega bodega) {
         try {
-            bodegaRepository.insertBodega(bodega.getNombre(), bodega.getTamanio(), bodega.getSucursal());
+            bodegaRepository.insertBodega(bodega.getNombre(), bodega.getTamanio(), bodega.getSucursal().getId());
         
         return new ResponseEntity<>("Bodega creada exitosamente", HttpStatus.CREATED);
         } catch(Exception e) {
