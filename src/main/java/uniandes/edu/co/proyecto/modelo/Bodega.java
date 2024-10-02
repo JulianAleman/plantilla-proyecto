@@ -21,7 +21,7 @@ public class Bodega {
 
     @ManyToOne
     @JoinColumn(name = "Id_sucursal", referencedColumnName = "Id")
-    private Sucursal Id_sucursal;
+    private Sucursal sucursal;
 
     
     public Bodega() 
@@ -29,7 +29,7 @@ public class Bodega {
     public Bodega(String nombre, Double tamanio, Sucursal sucursal) {
         this.Nombre = nombre;
         this.Tamaño = tamanio;
-        this.Id_sucursal = sucursal;
+        this.sucursal = sucursal;
     }
 
    
@@ -59,11 +59,11 @@ public class Bodega {
     }
 
     public Sucursal getSucursal() {
-        return Id_sucursal;
+        return sucursal;
     }
 
     public void setSucursal(Sucursal sucursal) {
-        this.Id_sucursal = sucursal;
+        this.sucursal = sucursal;
     }
     @Override
     public String toString() {
