@@ -37,7 +37,7 @@ public class SucursalController {
             sucursalRepository.insertSucursal(sucursal.getNombre(), sucursal.getTamanio(), sucursal.getDireccion(),
                                         sucursal.getTelefono(), sucursal.getCodigo_Ciudad().getCodigo());
         
-        return new ResponseEntity<>("Sucursal creado exitosamente", HttpStatus.CREATED);
+            return new ResponseEntity<>("Sucursal creado exitosamente", HttpStatus.CREATED);
         } catch(Exception e) {
             return new ResponseEntity<>("Error al crear el Sucursal", HttpStatus.INTERNAL_SERVER_ERROR);
         }
