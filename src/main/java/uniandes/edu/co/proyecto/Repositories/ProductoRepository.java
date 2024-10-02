@@ -31,7 +31,7 @@ public interface ProductoRepository extends JpaRepository<Producto, Long> {
     @Query(value = "SELECT * FROM Producto", nativeQuery = true)
     Collection<Producto> getAllProductos();
 
-    @Query(value = "SELECT * FROM Producto WHERE CodigoBarras = :codBar", nativeQuery = true)
+    @Query(value = "SELECT * FROM Producto WHERE Codigo_Barras = :codBar", nativeQuery = true)
     Producto getProducto(@Param("codBar") Long codBar);
 
     @Modifying

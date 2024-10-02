@@ -7,12 +7,14 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
 
 @Entity
 @Table(name = "Sucursal")
 public class Sucursal {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sucursal_seq")
+    @SequenceGenerator(name = "sucursal_seq", sequenceName = "sucursal_seq", allocationSize = 1)
     private Long Id;
 
     private String Nombre;

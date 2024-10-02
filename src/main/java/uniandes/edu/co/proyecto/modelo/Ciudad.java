@@ -4,13 +4,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Ciudad")
 public class Ciudad {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ciudad_seq")
+    @SequenceGenerator(name = "ciudad_seq", sequenceName = "ciudad_seq", allocationSize = 1)
     private Long Codigo;
 
     private String Nombre;

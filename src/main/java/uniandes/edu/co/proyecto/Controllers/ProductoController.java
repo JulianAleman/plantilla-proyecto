@@ -35,6 +35,19 @@ public class ProductoController {
         }
         
     }
+    @GetMapping("/Productos/codigo")
+    public ResponseEntity<Producto> getProductoByCodigo(@RequestParam Long codigo) {
+    try {
+        Producto categoria = productoRepository.getProducto(codigo);
+        if (categoria != null) {
+            return ResponseEntity.ok(categoria);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    } catch (Exception e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+    }
     @GetMapping("/Productos/Consulta/OrdenCompra")
     public ResponseEntity<Collection<ProductoInfo>> ProductosNeedOrdenCompra() {
         try{

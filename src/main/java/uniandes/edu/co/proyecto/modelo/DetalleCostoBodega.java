@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
@@ -11,7 +12,8 @@ import jakarta.persistence.Table;
 public class DetalleCostoBodega {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Detalle_Costo_Bodega_seq")
+    @SequenceGenerator(name = "Detalle_Costo_Bodega_seq", sequenceName = "Detalle_Costo_Bodega_seq", allocationSize = 1)
     private Long Id;
     
     private Double CostoUnitarioBodega;

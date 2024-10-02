@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
@@ -11,7 +12,8 @@ import jakarta.persistence.Table;
 public class EspecificacionEmpacado {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Especificacion_Empacado_seq")
+    @SequenceGenerator(name = "Especificacion_Empacado_seq", sequenceName = "Especificacion_Empacado_seq", allocationSize = 1)
     private Long Id;
     
     private Double Volumen_cm3;

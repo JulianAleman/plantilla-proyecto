@@ -8,13 +8,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Id;
 
 @Entity
 @Table(name = "Venta")
 public class Venta {
-    @jakarta.persistence.Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "venta_seq")
+    @SequenceGenerator(name = "venta_seq", sequenceName = "venta_seq", allocationSize = 1)
     private Long Id;
 
     private Date Fecha;
