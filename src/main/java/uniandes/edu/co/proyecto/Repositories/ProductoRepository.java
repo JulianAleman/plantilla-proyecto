@@ -89,7 +89,7 @@ public interface ProductoRepository extends JpaRepository<Producto, Long> {
                     "INNER JOIN Detalle_Costo_Bodega dcb ON ieb.id_detalle_costo_bodega = dcb.id \r\n"+
                     "WHERE ieb.id_bodega IN (SELECT b.id \r\n"+
                     "FROM Bodega b \r\n"+
-                    "INNER JOIN Sucursal s ON b.id_sucursal = s.id \r\n", nativeQuery = true)
+                    "INNER JOIN Sucursal s ON b.id_sucursal = s.id) \r\n", nativeQuery = true)
     Collection<ProductoImportante> obtenerDatosProducto1();
 
 
