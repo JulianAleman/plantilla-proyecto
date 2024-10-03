@@ -36,7 +36,7 @@ public interface ProductoRepository extends JpaRepository<Producto, Long> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Producto (Codigo_Barras, Nombre, Precio_Unitario_Venta, Cantidad_Presentacion, Unidad_Medida, Fecha_Expiracion, Codigo_Categoria, Id_especificacion_Empacado) VALUES (proyecto-1-superandes_sequence.nextval, :nombre, :precio, :presentacion, :cantidad, :unidadMedida, :expiracion, :codCategoria, :idEspecificacion)", nativeQuery = true)
+    @Query(value = "INSERT INTO Producto (Codigo_Barras, Nombre, Precio_Unitario_Venta, Cantidad_Presentacion, Unidad_Medida, Fecha_Expiracion, Codigo_Categoria, Id_especificacion_Empacado) VALUES (producto_seq.nextval, :nombre, :precio, :presentacion, :cantidad, :unidadMedida, :expiracion, :codCategoria, :idEspecificacion)", nativeQuery = true)
     void insertProducto(@Param("nombre") String nombre, @Param("precio") Double precio, @Param("presentacion") String presentacion,
                         @Param("cantidad") Integer cantidad, @Param("unidadMedida") String unidadMedida, 
                         @Param("expiracion") Date expiracion, @Param("codCategoria") Long codCategoria, @Param("idEspecificacion") Long idEspecificacion);
