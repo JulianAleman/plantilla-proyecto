@@ -35,4 +35,19 @@ public interface OrdenCompraRepository extends JpaRepository<OrdenCompra, Long> 
     @Transactional
     @Query(value = "DELETE FROM Orden_Compra WHERE Id = :id", nativeQuery = true)
     void deleteOrdenCompra(@Param("id") Long id);
+
+    @Modifying
+    @Transactional
+    @Query(value = "INSERT INTO Orden_Compra (fecha_creacion, sucursal_id, proveedor_id, fecha_entrega) VALUES (:fechaCreacion, :sucursalId, :proveedorId, :fechaEntrega)", nativeQuery = true)
+    void insertOrdenCompra(@Param("fechaCreacion") String fechaCreacion, @Param("sucursalId") Long sucursalId, @Param("proveedorId") Long proveedorId, @Param("fechaEntrega") String fechaEntrega);
+
+    @Modifying
+    @Transactional
+    @Query (value = "UPDATE OrdenCompra SET estado = 'vigente' WHERE id = :id", nativeQuery = true)
+    void updateOrdenCompraEstado(@Param("id") Long id);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE OrdenCompra SET estado = 'anulada' WHERE id = :id AND estado = 'vigente'", nativeQuery = true)
+    void anularOrdenCompra(@Param("id") Long id);
 }
