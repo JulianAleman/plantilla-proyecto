@@ -38,9 +38,9 @@ public interface OrdenCompraRepository extends JpaRepository<OrdenCompra, Long> 
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Orden_Compra (fecha_creacion, sucursal_id, proveedor_id, fecha_entrega) VALUES (:fechaCreacion, :sucursalId, :proveedorId, :fechaEntrega)", nativeQuery = true)
-    void insertOrdenCompra(@Param("fechaCreacion") String fechaCreacion, @Param("sucursalId") Long sucursalId, @Param("proveedorId") Long proveedorId, @Param("fechaEntrega") String fechaEntrega);
-
+    @Query(value = "INSERT INTO OrdenCompra (fecha_creacion, estado, fecha_entrega, nit_proveedor, id_sucursal) VALUES (:fechaCreacion, :estado, :fechaEntrega, :nitProveedor, :sucursalId)", nativeQuery = true)
+    void insertOrdenCompra(@Param("fechaCreacion") String fechaCreacion, @Param("estado") String estado, @Param("fechaEntrega") String fechaEntrega, @Param("nitProveedor") String nitProveedor, @Param("sucursalId") Long sucursalId);
+    
     @Modifying
     @Transactional
     @Query (value = "UPDATE OrdenCompra SET estado = 'vigente' WHERE id = :id", nativeQuery = true)
