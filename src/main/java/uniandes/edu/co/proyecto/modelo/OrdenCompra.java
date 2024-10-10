@@ -34,14 +34,13 @@ public class OrdenCompra {
     private Sucursal Id_Sucursal;
     public OrdenCompra() {;
     }
-    public OrdenCompra(Long id, Date fechaCreacion, String estado, Date fechaEntrega, Proveedor nit_proveedor,
+    public OrdenCompra(Date fechaCreacion, String estado, Date fechaEntrega, Proveedor nit_proveedor,
             Sucursal id_Sucursal) {
-        this.Id = id;
         this.FechaCreacion = fechaCreacion;
         this.Estado = estado;
         this.FechaEntrega = fechaEntrega;
-        Nit_proveedor = nit_proveedor;
-        Id_Sucursal = id_Sucursal;
+        this.Nit_proveedor = nit_proveedor;
+        this.Id_Sucursal = id_Sucursal;
     }
 
 
