@@ -1,0 +1,165 @@
+{
+	"info": {
+		"_postman_id": "cdc17383-dd3b-4e09-bac1-b528cfe636d3",
+		"name": "RFC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38591329",
+		"_collection_link": "https://sistrans-2419.postman.co/workspace/Sistrans-Workspace~28f79418-a1fb-4224-b185-ae025d7bd774/collection/38591329-cdc17383-dd3b-4e09-bac1-b528cfe636d3?action=share&source=collection_link&creator=38591329"
+	},
+	"item": [
+		{
+			"name": "INDICE OCUPACION",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/SuperAlpes/Bodega/Consulta?sucursal=1&codigos=1001,1002",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"SuperAlpes",
+						"Bodega",
+						"Consulta"
+					],
+					"query": [
+						{
+							"key": "sucursal",
+							"value": "1"
+						},
+						{
+							"key": "codigos",
+							"value": "1001,1002"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MOSTRAR LOS PRODUCTOS QUE CUMPLEN CON CIERTA CARACTERÍSTICA",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/SuperAlpes/Producto/ConsultaC?sucursal=1&precioMinimo=10.0&precioMaximo=300.0&fechaVencimiento=2024-01-19&codigoCategoria=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"SuperAlpes",
+						"Producto",
+						"ConsultaC"
+					],
+					"query": [
+						{
+							"key": "sucursal",
+							"value": "1"
+						},
+						{
+							"key": "precioMinimo",
+							"value": "10.0"
+						},
+						{
+							"key": "precioMaximo",
+							"value": "300.0"
+						},
+						{
+							"key": "fechaVencimiento",
+							"value": "2024-01-19"
+						},
+						{
+							"key": "codigoCategoria",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "INVENTARIO DE PRODUCTOS EN UNA BODEGA",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/SuperAlpes/Producto/ConsultaI?bodega=2&sucursal=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"SuperAlpes",
+						"Producto",
+						"ConsultaI"
+					],
+					"query": [
+						{
+							"key": "bodega",
+							"value": "2"
+						},
+						{
+							"key": "sucursal",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DISPONIBILIDAD PRODUCTO",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/SuperAlpes/Sucursales/Productos?producto=1001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"SuperAlpes",
+						"Sucursales",
+						"Productos"
+					],
+					"query": [
+						{
+							"key": "producto",
+							"value": "1001"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PRODUCTOS REQUIEREN OC",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/SuperAlpes/Productos/Consulta/OrdenCompra",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"SuperAlpes",
+						"Productos",
+						"Consulta",
+						"OrdenCompra"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
