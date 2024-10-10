@@ -55,7 +55,7 @@ public class SucursalController {
             else{
                 productos =sucursalRepository.SucursalesDeProducto1();;
             }
-            response.put("Productos", productos);
+            response.put("Sucursales", productos);
             return ResponseEntity.ok(response);
         }catch(Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

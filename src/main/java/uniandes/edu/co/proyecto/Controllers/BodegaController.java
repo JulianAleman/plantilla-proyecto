@@ -36,18 +36,19 @@ public class BodegaController {
         }
     }
     @GetMapping("/Bodega/Consulta")
-    public ResponseEntity<?> bodegasConsulta(@RequestParam(required = false) String sucursal, @RequestParam(required = false) List<Long> codigos) {
+    public ResponseEntity<?> bodegasConsulta(@RequestParam(required = false) Long sucursal, @RequestParam(required = false) List<Long> codigos) {
         try {
+            
             Collection<respuestaocupaciondeunabodega> informacion = bodegaRepository.mostrarocupaciondeunabodega();
             Map<String, Object> response = new HashMap<>();
             response.put("Porcentaje_Ocupacion_Todas", informacion);
-            Collection<Bodega> bodegas;
+            Collection<?> bodegas;
 
-            if (sucursal == null || sucursal.isEmpty() || codigos.isEmpty()) {
+            if (sucursal == null || codigos.isEmpty()) {
                 bodegas = bodegaRepository.getBodegas();
 
             } else {
-                bodegas = bodegaRepository.Bodegas(Long.parseLong(sucursal), codigos);
+                bodegas = bodegaRepository.Bodegas(sucursal, codigos);
             }
             response.put("Bodegas", bodegas);
             

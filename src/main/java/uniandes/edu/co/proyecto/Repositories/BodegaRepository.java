@@ -40,11 +40,14 @@ public interface BodegaRepository extends JpaRepository<Bodega, Long>{
 
     
     @Query(value ="SELECT b.Id AS Id_bodega, \r\n"+
+        "(SUM(ieb.total_Existencia * ee.volumen_cm3) / b.tamaño) * 100 AS Porcentaje_Ocupacion \r\n" +
+       "FROM Bodega b \r\n" +
        "INNER JOIN Info_Extra_Bodega ieb ON b.Id = ieb.Id_Bodega\r\n" +
        "INNER JOIN Producto p ON ieb.codigo_barras_producto = p.Codigo_Barras \r\n" +
        "INNER JOIN Especificacion_Empacado ee ON p.Id_Especificacion_Empacado = ee.Id \r\n" +
-       "WHERE p.Codigo_Barras IN :codigos AND b.sucursal.id = :sucursal; \r\n", nativeQuery = true)
-    Collection<Bodega>Bodegas(@Param("sucursal") Long sucursal, @Param ("codigos") List<Long> codigos);
+       "WHERE p.Codigo_Barras IN (:codigos) AND b.Id_Sucursal = :sucursal \r\n"+
+       "GROUP BY b.Id, b.Tamaño", nativeQuery = true)
+    Collection<respuestaocupaciondeunabodega>Bodegas(@Param("sucursal") Long sucursal, @Param ("codigos") List<Long> codigos);
 
     @Query(value = "SELECT b.Id AS bodega, " +
                "(SUM(ieb.total_Existencia * ee.volumen_cm3) / b.tamaño) * 100 AS Porcentaje_Ocupacion " +
