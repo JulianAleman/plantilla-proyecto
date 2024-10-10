@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import java.text.SimpleDateFormat;
 
 import uniandes.edu.co.proyecto.modelo.Producto;
 import uniandes.edu.co.proyecto.Repositories.ProductoRepository;
@@ -68,7 +67,6 @@ public class ProductoController {
                            @RequestParam(required = false) Long codigoCategoria) {
         
         try{
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Map<String, Object> response = new HashMap<>();
             Collection<Producto> productos;
             if (sucursal == null || precioMinimo == null || precioMaximo == null || 
@@ -76,7 +74,7 @@ public class ProductoController {
                 productos = productoRepository.getAllProductos();
 
             } else {
-                productos = productoRepository.ProductosConCaracteristicas(sucursal, precioMinimo, precioMaximo,formatter.parse(fechaVencimiento) , codigoCategoria);
+                productos = productoRepository.ProductosConCaracteristicas(sucursal, precioMinimo, precioMaximo,fechaVencimiento, codigoCategoria);
             }
             response.put("Productos", productos);
             return ResponseEntity.ok(response);

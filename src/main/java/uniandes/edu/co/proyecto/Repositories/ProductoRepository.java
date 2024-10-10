@@ -36,7 +36,7 @@ public interface ProductoRepository extends JpaRepository<Producto, Long> {
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Producto (Codigo_Barras, Nombre, Precio_Unitario_Venta, Cantidad_Presentacion, Unidad_Medida, Fecha_Expiracion, Codigo_Categoria, Id_especificacion_Empacado) VALUES (producto_seq.nextval, :nombre, :precio, :presentacion, :cantidad, :unidadMedida, :expiracion, :codCategoria, :idEspecificacion)", nativeQuery = true)
+    @Query(value = "INSERT INTO Producto (Codigo_Barras, Nombre, Precio_Unitario_Venta, Presentacion, Cantidad_Presentacion, Unidad_Medida, Fecha_Expiracion, Codigo_Categoria, Id_Especificacion_Empacado)  VALUES (producto_seq.nextval, :nombre, :precio, :presentacion, :cantidad, :unidadMedida, :expiracion, :codCategoria, :idEspecificacion)", nativeQuery = true)
     void insertProducto(@Param("nombre") String nombre, @Param("precio") Double precio, @Param("presentacion") String presentacion,
                         @Param("cantidad") Integer cantidad, @Param("unidadMedida") String unidadMedida, 
                         @Param("expiracion") Date expiracion, @Param("codCategoria") Long codCategoria, @Param("idEspecificacion") Long idEspecificacion);
@@ -62,12 +62,12 @@ public interface ProductoRepository extends JpaRepository<Producto, Long> {
         "INNER JOIN Bodega b ON ieb.id_bodega = b.id \r\n"+
         "INNER JOIN Sucursal s ON b.id_sucursal = s.id \r\n"+
         "WHERE Precio_Unitario_Venta BETWEEN :precioMinimo AND :precioMaximo\r\n"+
-        "AND pp.fecha_vencimiento > :fechaVencimiento \r\n"+ 
-        "AND (s.id= :sucursal OR c.codigo= :codigoCategoria);", nativeQuery = true)
+        "AND pp.fecha_vencimiento > TO_DATE(:fechaVencimiento, 'YYYY-MM-DD') \r\n"+ 
+        "AND (s.id= :sucursal OR c.codigo= :codigoCategoria)", nativeQuery = true)
     Collection<Producto> ProductosConCaracteristicas(@Param("sucursal") Long sucursal, 
                            @Param("precioMinimo") Double precioMinimo, 
                            @Param("precioMaximo") Double precioMaximo, 
-                           @Param("fechaVencimiento") Date fechaVencimiento, 
+                           @Param("fechaVencimiento") String fechaVencimiento, 
                            @Param("codigoCategoria") Long codigoCategoria);
 
     @Query(value = "SELECT p.nombre, dcb.cantidad_Existencias AS CantidadActual, \r\n"+
