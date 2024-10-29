@@ -41,4 +41,5 @@ public interface RecepcionProductosRepository extends JpaRepository<RecepcionPro
     @Transactional(readOnly = true, isolation = Isolation.READ_COMMITTED)
     @Query(value=" SELECT * FROM Recepcion_Productos WHERE rp.Id_Bodega = :idBodega" , nativeQuery=true)
     List<RecepcionProductos> documentosporId(@Param("idBodega") Long idBodega);
+
 }

@@ -7,6 +7,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RestController;
 
 import uniandes.edu.co.proyecto.modelo.RecepcionProductos;
@@ -32,7 +34,7 @@ public class RecepcionProductosController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-    
+    /* 
     @PostMapping("/RecepcionProductos/new/save")
     public ResponseEntity<String> RecepcionProductosGuardar(@RequestBody RecepcionProductos recepcionProductos) {
         try {
@@ -43,7 +45,7 @@ public class RecepcionProductosController {
         } catch(Exception e) {
             return new ResponseEntity<>("Error al crear el RecepcionProductos", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }
+    }*/
     @GetMapping("RecepcionProductos/consultarD")
     public  ResponseEntity<?> consultarDocumentosIngreso(@RequestParam(required = false) Long idBodega) {
         try{
@@ -58,6 +60,17 @@ public class RecepcionProductosController {
             return ResponseEntity.ok(response);
         }catch(Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @PostMapping("/RecepcionProductos/ingreso")
+    @Transactional(isolation = Isolation.SERIALIZABLE, rollbackFor = Exception.class)
+    public void InsertarRecepcion(@RequestBody RecepcionProductos documento) throws Exception {
+        try {
+            recepcionProductosRepository.insertRecepcionProductos(documento.getFechaRecepcion(), documento.getId_Bodega().getId(), documento.getId_OrdenCompra().getId());
+            
+        } catch (Exception e) {
+            throw new Exception("Error al registrar la recepción de productos", e);
         }
     }
 }
