@@ -19,6 +19,9 @@ public interface InfoExtraOrdenRepository extends JpaRepository<InfoExtraOrden, 
     @Query(value = "SELECT * FROM Info_Extra_Orden WHERE Codigo_Barras_Producto = :codBar AND Id_Orden_Compra = :idOrdCom", nativeQuery = true)
     InfoExtraOrden getInfoExtraOrden(@Param("codBar") Long codBar, @Param("idOrdCom") Long idOrdCom);
 
+    @Query(value = "SELECT * FROM Info_Extra_Orden WHERE Id_Orden_Compra = :idOrdCom", nativeQuery = true)
+    Collection<InfoExtraOrden> getInfoExtraOrdenpororden( @Param("idOrdCom") Long idOrdCom);
+
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO Info_Extra_Orden (Codigo_Barras_Producto, Id_Orden_Compra, Cantidad, Costo_Unitario_Compra) VALUES (:codBar, :idOrdCom, :cantidad, :costo)", nativeQuery = true)

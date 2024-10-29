@@ -38,4 +38,9 @@ public interface InfoExtraBodegaRepository extends JpaRepository<InfoExtraBodega
     @Transactional
     @Query(value = "DELETE FROM Info_Extra_Bodega WHERE Codigo_Barras_Producto = :codBar AND Id_bodega = :idBod", nativeQuery = true)
     void deleteInfoExtraBodega(@Param("codBar") Long codBar, @Param("idBod") Long idBod);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE Info_Extra_Bodega SET Total_Existencia = Total_Existencia + :cantidad, Costo_Promedio = :precio WHERE Codigo_Barras_Producto = :cd", nativeQuery = true)
+    void ActualizarCantidadyprecio(@Param("cantidad") Integer cantidad, @Param("precio") Double precio, @Param("cd") Long cd);
 }

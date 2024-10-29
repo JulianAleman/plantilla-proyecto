@@ -44,4 +44,9 @@ public interface OrdenCompraRepository extends JpaRepository<OrdenCompra, Long> 
     @Transactional
     @Query(value = "UPDATE Orden_Compra SET estado = 'anulada' WHERE id = :id AND estado = 'vigente'", nativeQuery = true)
     void anularOrdenCompra(@Param("id") Long id);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE Orden_Compra SET estado = 'Entragada' WHERE id = :id AND estado = 'vigente'", nativeQuery = true)
+    void Entregada(@Param("id") Long id);
 }
