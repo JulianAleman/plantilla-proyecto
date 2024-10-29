@@ -2,11 +2,13 @@ package uniandes.edu.co.proyecto.Repositories;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import uniandes.edu.co.proyecto.modelo.RecepcionProductos;
@@ -14,7 +16,7 @@ import uniandes.edu.co.proyecto.modelo.RecepcionProductos;
 public interface RecepcionProductosRepository extends JpaRepository<RecepcionProductos, Long> {
 
     @Query(value = "SELECT * FROM Recepcion_Productos", nativeQuery = true)
-    Collection<RecepcionProductos> getAllRecepcionProductos();
+    Collection<RecepcionProductos> todosRecepcionProductos();
 
     @Query(value = "SELECT * FROM Recepcion_Productos WHERE Id = :id", nativeQuery = true)
     RecepcionProductos getRecepcionProductos(@Param("id") Long id);
@@ -35,4 +37,8 @@ public interface RecepcionProductosRepository extends JpaRepository<RecepcionPro
     @Transactional
     @Query(value = "DELETE FROM Recepcion_Productos WHERE Id = :id", nativeQuery = true)
     void deleteRecepcionProductos(@Param("id") Long id);
+
+    @Transactional(readOnly = true, isolation = Isolation.READ_COMMITTED)
+    @Query(value=" SELECT * FROM Recepcion_Productos WHERE rp.Id_Bodega = :idBodega" , nativeQuery=true)
+    List<RecepcionProductos> documentosporId(@Param("idBodega") Long idBodega);
 }
