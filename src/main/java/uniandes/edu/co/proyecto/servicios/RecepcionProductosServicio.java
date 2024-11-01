@@ -41,9 +41,26 @@ public class RecepcionProductosServicio {
         }
     }
     
+    @Transactional(readOnly = true, isolation = Isolation.SERIALIZABLE)
+    public Collection<RecepcionProductos> docPorId( Long idBodega){
+        try {
+            Thread.sleep(30000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new RuntimeException("Thread was interrupted", e);
+        }
+        return recepcionProductosRepository.documentosporId(idBodega);
+    }   
 
     @Transactional(readOnly = true, isolation = Isolation.READ_COMMITTED)
     public Collection<RecepcionProductos> documentosPorIdespecifico( Long idBodega){
+        try {
+            Thread.sleep(30000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new RuntimeException("Thread was interrupted", e);
+        }
         return recepcionProductosRepository.documentosporId(idBodega);
     }
+
 }
