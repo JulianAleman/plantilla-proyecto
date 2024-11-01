@@ -46,8 +46,24 @@ public class RecepcionProductosController {
             return new ResponseEntity<>("Error al crear el RecepcionProductos", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @GetMapping("RecepcionProductos/consultarD")
-    public  ResponseEntity<?> consultarDocumentosIngreso(@RequestParam(required = false) Long idBodega) {
+    @GetMapping("RecepcionProductos/consultarD3")
+    public  ResponseEntity<?> consultarDocumentosIngreso3(@RequestParam(required = false) Long idBodega) {
+        try{
+            Map<String, Object> response = new HashMap<>();
+            Collection<RecepcionProductos> documentos;
+            if (idBodega== null) {
+                documentos = recepcionProductosServicio.docPorId(idBodega);
+            } else {
+                documentos = recepcionProductosRepository.todosRecepcionProductos();
+            }
+            response.put("Documentos", documentos);
+            return ResponseEntity.ok(response);
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+    @GetMapping("RecepcionProductos/consultarD4")
+    public  ResponseEntity<?> consultarDocumentosIngreso4(@RequestParam(required = false) Long idBodega) {
         try{
             Map<String, Object> response = new HashMap<>();
             Collection<RecepcionProductos> documentos;
@@ -63,5 +79,6 @@ public class RecepcionProductosController {
         }
     }
 
+    
     
 }
