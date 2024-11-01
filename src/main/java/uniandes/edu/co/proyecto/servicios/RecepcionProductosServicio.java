@@ -53,14 +53,12 @@ public class RecepcionProductosServicio {
     }   
 
     @Transactional(readOnly = true, isolation = Isolation.READ_COMMITTED)
-    public Collection<RecepcionProductos> documentosPorIdespecifico( Long idBodega){
-        try {
-            Thread.sleep(30000);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            throw new RuntimeException("Thread was interrupted", e);
-        }
-        return recepcionProductosRepository.documentosporId(idBodega);
+    public Collection<RecepcionProductos> documentosPorIdespecifico( Long idBodega) throws InterruptedException{
+        Collection<RecepcionProductos> docs= recepcionProductosRepository.documentosporId(idBodega);
+        System.out.println(docs.size());
+        Thread.sleep(30000);
+        docs = recepcionProductosRepository.documentosporId(idBodega);
+        return docs;
     }
 
 }
