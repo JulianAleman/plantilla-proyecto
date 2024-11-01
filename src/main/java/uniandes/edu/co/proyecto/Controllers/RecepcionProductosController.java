@@ -51,7 +51,7 @@ public class RecepcionProductosController {
         try{
             Map<String, Object> response = new HashMap<>();
             Collection<RecepcionProductos> documentos;
-            if (idBodega== null) {
+            if (idBodega!= null) {
                 documentos = recepcionProductosServicio.docPorId(idBodega);
             } else {
                 documentos = recepcionProductosRepository.todosRecepcionProductos();
@@ -67,7 +67,7 @@ public class RecepcionProductosController {
         try{
             Map<String, Object> response = new HashMap<>();
             Collection<RecepcionProductos> documentos;
-            if (idBodega== null) {
+            if (idBodega!= null) {
                 documentos = recepcionProductosServicio.documentosPorIdespecifico(idBodega);
             } else {
                 documentos = recepcionProductosRepository.todosRecepcionProductos();
