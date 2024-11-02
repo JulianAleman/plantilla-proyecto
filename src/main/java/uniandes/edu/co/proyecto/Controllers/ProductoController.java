@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,6 +36,15 @@ public class ProductoController {
         }
         
     }
+    @PutMapping("/Productos/Update")
+    public ResponseEntity<String> ActualizarEstado(@RequestParam Long codBar, @RequestParam String cantidad)  {
+        try {
+            productoRepository.updateProducto(codBar, cantidad);
+        return new ResponseEntity<>("OrdenCompra Actualizada exitosamente", HttpStatus.CREATED);
+        } catch(Exception e) {
+            return new ResponseEntity<>("Error al actualizar la OrdenCompra", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    } 
     @GetMapping("/Productos/codigo")
     public ResponseEntity<Producto> getProductoByCodigo(@RequestParam Long codigo) {
     try {
