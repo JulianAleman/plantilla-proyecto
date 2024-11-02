@@ -26,9 +26,8 @@ public interface ProveedorRepository extends JpaRepository<Proveedor, Long> {
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Proveedor SET Nombre = :nombre, Direccion = :direccion, Nombre_Contacto = :contacto, Telefono_Contacto = :telefono WHERE Nit = :nit", nativeQuery = true)
-    void updateProveedor(@Param("nit") Long nit, @Param("nombre") String nombre, @Param("direccion") String direccion,
-    @Param("contacto") String contacto, @Param("telefono") Long telefono);
+    @Query(value = "UPDATE Proveedor SET Nombre_Contacto = :contacto WHERE Nit = :nit", nativeQuery = true)
+    void updateProveedor(@Param("nit") Long nit,@Param("contacto") String contacto);
 
     @Modifying
     @Transactional
