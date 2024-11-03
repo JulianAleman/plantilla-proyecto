@@ -2,6 +2,8 @@ package uniandes.edu.co.proyecto.Repositories;
 
 import java.util.Collection;
 import java.util.Date;
+
+import org.antlr.v4.runtime.atn.SemanticContext.AND;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -36,5 +38,10 @@ public interface RecepcionProductosRepository extends JpaRepository<RecepcionPro
     void deleteRecepcionProductos(@Param("id") Long id);
 
     @Query(value=" SELECT * FROM Recepcion_Productos rp WHERE rp.Id_Bodega = :idBodega AND rp.id_Sucursal = :idSucursal" , nativeQuery=true)
+    Collection<RecepcionProductos> documentosporIdd(@Param("idBodega") Long idBodega, @Param("idSucursal") Long idSucursal);
+   
+    @Query(value=" SELECT * FROM Recepcion_Productos rp WHERE rp.Id_Bodega = 1 AND rp.id_orden_compra IN ( SELECT id FROM Orden_Compra op WHERE id_Sucursal = 1 )" , nativeQuery=true)
     Collection<RecepcionProductos> documentosporId(@Param("idBodega") Long idBodega, @Param("idSucursal") Long idSucursal);
+
+    
 }
