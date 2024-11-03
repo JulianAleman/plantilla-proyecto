@@ -37,7 +37,7 @@ public class RecepcionProductosServicio {
             ordenCompraRepository.Entregada(documento.getId_Bodega().getId());
             
         } catch (Exception e) {
-            throw new Exception("Error al registrar la recepción de productos", e);
+            System.out.println(e.getMessage());
         }
     }
     
