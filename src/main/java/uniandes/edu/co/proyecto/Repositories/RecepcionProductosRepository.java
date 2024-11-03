@@ -22,8 +22,8 @@ public interface RecepcionProductosRepository extends JpaRepository<RecepcionPro
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Recepcion_Productos (Id, fecha_Recepcion, Id_Bodega, Id_ordenCompra) VALUES (proyecto-1-superandes_sequence.nextval, :recepcion, :idBodega, :idOrdCom)", nativeQuery = true)
-    void insertRecepcionProductos(@Param("recepcion") Date recepcion, @Param("idBodega") Long idBodega, 
+    @Query(value = "INSERT INTO Recepcion_Productos (Id, fecha_Recepcion, Id_Bodega, Id_ordenCompra) VALUES (:id, :recepcion, :idBodega, :idOrdCom)", nativeQuery = true)
+    void insertRecepcionProductos(@Param("id") Long id, @Param("recepcion") Date recepcion, @Param("idBodega") Long idBodega, 
                                 @Param("idOrdCom") Long idOrdCom);
 
     @Modifying
