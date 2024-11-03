@@ -29,12 +29,10 @@ public class InfoExtraOrdenController {
         }
     }
 
-    @PostMapping("/InfoExtraOrdenes/new/save")
+    @PostMapping("/InfoExtraOrdenes/new/save")  
     public ResponseEntity<String> infoExtraOrdenGuardar(@RequestBody InfoExtraOrden infoExtraOrden) {
         try {
-        infoExtraOrdenRepository.insertInfoExtraOrden(infoExtraOrden.getPk().getCodigoBarras().getCodigoBarras(),
-                                        infoExtraOrden.getPk().getOrdenCompra().getId(), infoExtraOrden.getPk().getCantidad(),
-                                        infoExtraOrden.getPk().getCostoUnitarioCompra());
+            infoExtraOrdenRepository.insertInfoExtraOrden(infoExtraOrden.getPk().getCodigoBarras().getCodigoBarras(),infoExtraOrden.getPk().getOrdenCompra().getId(), infoExtraOrden.getPk().getCantidad(), infoExtraOrden.getPk().getCostoUnitarioCompra());
         
         return new ResponseEntity<>("InfoExtraOrden creado exitosamente", HttpStatus.CREATED);
         } catch(Exception e) {

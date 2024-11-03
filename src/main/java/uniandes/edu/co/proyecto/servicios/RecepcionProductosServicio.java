@@ -28,7 +28,7 @@ public class RecepcionProductosServicio {
     @Transactional (isolation = Isolation.SERIALIZABLE, rollbackFor = Exception.class)
     public void InsertarRecepcion( RecepcionProductos documento) throws Exception {
         try {
-            recepcionProductosRepository.insertRecepcionProductos(documento.getId(),documento.getFechaRecepcion(), documento.getId_Bodega().getId(), documento.getId_OrdenCompra().getId());
+            recepcionProductosRepository.insertRecepcionProductos(documento.getFechaRecepcion(), documento.getId_Bodega().getId(), documento.getId_OrdenCompra().getId());
             Collection<InfoExtraOrden> productos = infoExtraOrdenRepository.getInfoExtraOrdenpororden(documento.getId_OrdenCompra().getId());
              
             for (InfoExtraOrden producto : productos){
@@ -38,6 +38,7 @@ public class RecepcionProductosServicio {
             
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            throw e;
         }
     }
     
