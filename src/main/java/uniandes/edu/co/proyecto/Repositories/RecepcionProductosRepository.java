@@ -22,7 +22,7 @@ public interface RecepcionProductosRepository extends JpaRepository<RecepcionPro
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO Recepcion_Productos (Id, fecha_Recepcion, Id_Bodega, Id_ordenCompra) VALUES (:id, :recepcion, :idBodega, :idOrdCom)", nativeQuery = true)
+    @Query(value = "INSERT INTO Recepcion_Productos (Id, fecha_Recepcion, Id_Bodega, Id_orden_Compra) VALUES (:id, :recepcion, :idBodega, :idOrdCom)", nativeQuery = true)
     void insertRecepcionProductos(@Param("id") Long id, @Param("recepcion") Date recepcion, @Param("idBodega") Long idBodega, 
                                 @Param("idOrdCom") Long idOrdCom);
 
