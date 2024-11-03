@@ -40,7 +40,7 @@ public interface RecepcionProductosRepository extends JpaRepository<RecepcionPro
     @Query(value=" SELECT * FROM Recepcion_Productos rp WHERE rp.Id_Bodega = :idBodega AND rp.id_Sucursal = :idSucursal" , nativeQuery=true)
     Collection<RecepcionProductos> documentosporIdd(@Param("idBodega") Long idBodega, @Param("idSucursal") Long idSucursal);
    
-    @Query(value=" SELECT * FROM Recepcion_Productos rp WHERE rp.Id_Bodega = 1 AND rp.id_orden_compra IN ( SELECT id FROM Orden_Compra op WHERE id_Sucursal = 1 )" , nativeQuery=true)
+    @Query(value=" SELECT * FROM Recepcion_Productos rp WHERE rp.Id_Bodega = :idBodega AND rp.id_orden_compra IN ( SELECT id FROM Orden_Compra op WHERE id_Sucursal = :idSucursal )" , nativeQuery=true)
     Collection<RecepcionProductos> documentosporId(@Param("idBodega") Long idBodega, @Param("idSucursal") Long idSucursal);
 
     
