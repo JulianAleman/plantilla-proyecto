@@ -2,8 +2,6 @@ package uniandes.edu.co.proyecto.Repositories;
 
 import java.util.Collection;
 import java.util.Date;
-
-import org.antlr.v4.runtime.atn.SemanticContext.AND;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
