@@ -42,20 +42,20 @@ public class RecepcionProductosServicio {
     }
     
     @Transactional(readOnly = true, isolation = Isolation.SERIALIZABLE)
-    public Collection<RecepcionProductos> docPorId( Long idBodega) throws InterruptedException{
-        Collection<RecepcionProductos> docs= recepcionProductosRepository.documentosporId(idBodega);
+    public Collection<RecepcionProductos> docPorId( Long idBodega, Long idSucursal) throws InterruptedException{
+        Collection<RecepcionProductos> docs= recepcionProductosRepository.documentosporId(idBodega, idSucursal);
         System.out.println(docs.size());
         Thread.sleep(30000);
-        docs = recepcionProductosRepository.documentosporId(idBodega);
+        docs = recepcionProductosRepository.documentosporId(idBodega, idSucursal);
         return docs;
     }   
 
     @Transactional(readOnly = true, isolation = Isolation.READ_COMMITTED)
-    public Collection<RecepcionProductos> documentosPorIdespecifico( Long idBodega) throws InterruptedException{
-        Collection<RecepcionProductos> docs= recepcionProductosRepository.documentosporId(idBodega);
+    public Collection<RecepcionProductos> documentosPorIdespecifico( Long idBodega, Long idSucursal) throws InterruptedException{
+        Collection<RecepcionProductos> docs= recepcionProductosRepository.documentosporId(idBodega, idSucursal);
         System.out.println(docs.size());
         Thread.sleep(30000);
-        docs = recepcionProductosRepository.documentosporId(idBodega);
+        docs = recepcionProductosRepository.documentosporId(idBodega,idSucursal);
         return docs;
     }
 

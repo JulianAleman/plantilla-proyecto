@@ -47,12 +47,12 @@ public class RecepcionProductosController {
         }
     }
     @GetMapping("RecepcionProductos/consultarD3")
-    public  ResponseEntity<?> consultarDocumentosIngreso3(@RequestParam(required = false) Long idBodega) {
+    public  ResponseEntity<?> consultarDocumentosIngreso3(@RequestParam(required = false) Long idBodega, @RequestParam(required = false) Long idSucursal) {
         try{
             Map<String, Object> response = new HashMap<>();
             Collection<RecepcionProductos> documentos;
-            if (idBodega!= null) {
-                documentos = recepcionProductosServicio.docPorId(idBodega);
+            if (idBodega!= null & idSucursal!=null) {
+                documentos = recepcionProductosServicio.docPorId(idBodega, idSucursal);
             } else {
                 documentos = recepcionProductosRepository.todosRecepcionProductos();
             }
@@ -63,12 +63,12 @@ public class RecepcionProductosController {
         }
     }
     @GetMapping("RecepcionProductos/consultarD4")
-    public  ResponseEntity<?> consultarDocumentosIngreso4(@RequestParam(required = false) Long idBodega) {
+    public  ResponseEntity<?> consultarDocumentosIngreso4(@RequestParam(required = false) Long idBodega, @RequestParam(required = false) Long idSucursal) {
         try{
             Map<String, Object> response = new HashMap<>();
             Collection<RecepcionProductos> documentos;
-            if (idBodega!= null) {
-                documentos = recepcionProductosServicio.documentosPorIdespecifico(idBodega);
+            if (idBodega!= null & idSucursal!=null) {
+                documentos = recepcionProductosServicio.documentosPorIdespecifico(idBodega, idSucursal);
             } else {
                 documentos = recepcionProductosRepository.todosRecepcionProductos();
             }

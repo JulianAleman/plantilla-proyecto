@@ -35,6 +35,6 @@ public interface RecepcionProductosRepository extends JpaRepository<RecepcionPro
     @Query(value = "DELETE FROM Recepcion_Productos WHERE Id = :id", nativeQuery = true)
     void deleteRecepcionProductos(@Param("id") Long id);
 
-    @Query(value=" SELECT * FROM Recepcion_Productos rp WHERE rp.Id_Bodega = :idBodega" , nativeQuery=true)
-    Collection<RecepcionProductos> documentosporId(@Param("idBodega") Long idBodega);
+    @Query(value=" SELECT * FROM Recepcion_Productos rp WHERE rp.Id_Bodega = :idBodega AND rp.id_Sucursal = :idSucursal" , nativeQuery=true)
+    Collection<RecepcionProductos> documentosporId(@Param("idBodega") Long idBodega, @Param("idSucursal") Long idSucursal);
 }
