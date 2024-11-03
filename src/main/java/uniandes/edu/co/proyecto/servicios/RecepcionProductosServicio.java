@@ -30,7 +30,7 @@ public class RecepcionProductosServicio {
         try {
             recepcionProductosRepository.insertRecepcionProductos(documento.getId(),documento.getFechaRecepcion(), documento.getId_Bodega().getId(), documento.getId_OrdenCompra().getId());
             Collection<InfoExtraOrden> productos = infoExtraOrdenRepository.getInfoExtraOrdenpororden(documento.getId_OrdenCompra().getId());
-            
+             
             for (InfoExtraOrden producto : productos){
                 infoExtraBodegaRepository.ActualizarCantidadyprecio(producto.getPk().getCantidad(), producto.getPk().getCostoUnitarioCompra(), producto.getPk().getCodigoBarras().getCodigoBarras());
             }
